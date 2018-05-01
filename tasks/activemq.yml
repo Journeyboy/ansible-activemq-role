@@ -9,17 +9,6 @@
     msg: "Fetching ActiveMQ Install Handlers"
   notify: "Install ActiveMQ"
   when: activemq_result.stat.exists == False
-  
-- name: Check for Sym Link
-  stat:
-    path: "{{ activemq.path }}/activemq"
-  register: sym_result
-
-- name: Making Sym Link
-  debug:
-    msg: "Fetching Sym Link Handlers"
-  notify: "Create ActiveMQ Sym Link"
-  when: (sym_result.stat.islnk is defined and sym_result.stat.islnk) == False
 
 - name: Chown Dir
   file:
