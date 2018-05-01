@@ -1,6 +1,6 @@
 ---
 - name: Install Supervisord
-  yum: name=supervisord state=latest
+  yum: name=supervisor state=latest
 - name: Copy Supervisord.conf
   copy: src=files/supervisord.conf dest=/etc/supervisord.conf
   notify:

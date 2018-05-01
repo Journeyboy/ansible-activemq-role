@@ -1,2 +1,8 @@
 ---
 # defaults file for /etc/ansible/roles/activemq
+activemq:
+  version: 5.14.3
+  path: /opt
+
+java:
+  version: 1.8.0

@@ -1,5 +1,12 @@
 ---
 - name: Install JDK
-  yum: name=java-1.8.0-openjdk state=latest
-- name: Set Java Home
+  yum: name=java-{{ java.version }}-openjdk state=latest
+
+- name: Get Java Home
   shell: echo "JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")" | sudo tee -a /etc/profile && source /etc/profile
+  register: java_home
+
+- name: Set Java Home
+  lineinfile:
+    path: /etc/profile
+    line: "{{ java_home.stdout }}"
