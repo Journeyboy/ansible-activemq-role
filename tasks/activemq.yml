@@ -2,11 +2,12 @@
 - name: Install ActiveMQ
   shell: "{{item}}" 
   with_items:
-   - curl https://archive.apache.org/dist/activemq/5.14.3/apache-activemq-5.14.3-bin.tar.gz --output activemq-5.14.tar.gz --silent
-   - sudo tar -zxvf activemq-5.14.tar.gz -C /opt
-   - sudo ln -s /opt/apache-activemq-5.14.3 /opt/activemq
-   - rm activemq-5.14.tar.gz
-- name: Chown /activemq dir
+    - curl https://archive.apache.org/dist/activemq/5.14.3/apache-activemq-5.14.3-bin.tar.gz --output activemq-5.14.tar.gz --silent
+    - sudo tar -zxvf activemq-5.14.tar.gz -C /opt
+    - sudo ln -s /opt/apache-activemq-5.14.3 /opt/activemq
+    - rm activemq-5.14.tar.gz
+
+- name: Chown activemq dir
   shell: chown -R activemq /opt/activemq/
 - name: Set ActiveMQ Home
   lineinfile:

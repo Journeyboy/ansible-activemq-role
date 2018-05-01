@@ -1,2 +1,4 @@
 ---
 # handlers file for /etc/ansible/roles/activemq
+- name: restart supervisord
+  service: name=supervisord state=restarted
