@@ -1,0 +1,15 @@
+---
+- name:Initial Update
+  yum: name=* state=latest
+- name:Install EPEL
+  yum: name=epel-release state=lastest
+- name:Add user activemq
+  user: name: activemq
+- name: Open iptables to ActiveMQ admin console
+  iptables:
+    table: INPUT
+    protocol: tcp
+    match: tcp
+    destination_port: 8161
+    comment: ActiveMQ admin console
+ 
