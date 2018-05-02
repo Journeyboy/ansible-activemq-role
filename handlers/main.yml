@@ -1,4 +1,33 @@
 ---
 # handlers file for /etc/ansible/roles/activemq
+- name: ActiveMQ download
+  get_url:
+    url: "https://archive.apache.org/dist/activemq/{{activemq.version}}/apache-activemq-{{activemq.version}}-bin.tar.gz"
+    dest: "~/activemq.tar.gz"
+
+- name: ActiveMQ dir setup
+  file:
+    path: /opt/activemq
+    state: directory
+
+- name: ActiveMQ extract
+  shell: tar -zxvf ~/activemq.tar.gz --strip-components=1 -C /opt/activemq
+
+- name: ActiveMQ clean artifact
+  file:
+    state: absent
+    path: ~/activemq.tar.gz
+
+- name: ActiveMQ chown dir
+  file:
+    dest: "{{ activemq.path }}/activemq"
+    owner: activemq
+    group: activemq
+    recurse: yes
+
+- name: ActiveMQ open iptable
+  shell: iptables -I INPUT -p tcp -m tcp --dport 8161 -j ACCEPT
+
 - name: restart supervisord
   service: name=supervisord state=restarted
+

@@ -5,11 +5,3 @@
   yum: name=epel-release state=latest
 - name: Add user activemq
   user: name=activemq
-- name: Open iptables to ActiveMQ admin console
-  iptables:
-    chain: INPUT
-    protocol: tcp
-    match: tcp
-    destination_port: 8161
-    comment: ActiveMQ admin console
- 
