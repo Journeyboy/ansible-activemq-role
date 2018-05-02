@@ -1,6 +1,10 @@
 ---
 # tasks file for /etc/ansible/roles/activemq
 - import_tasks: basics.yml
+  tags: basics
 - import_tasks: java.yml
+  tags: java
 - import_tasks: activemq.yml
+  tags: activemq
 - import_tasks: supervisord.yml
+  tags: supervisord

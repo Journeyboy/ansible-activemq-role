@@ -1,3 +1,0 @@
----
-- name: Install Supervisord
-  yum: name=supervisor state=restarted enabled=yes
