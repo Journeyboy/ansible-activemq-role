@@ -28,6 +28,6 @@
 - name: ActiveMQ open iptable
   shell: iptables -I INPUT -p tcp -m tcp --dport 8161 -j ACCEPT
 
-- name: restart supervisord
+- name: Supervisord restart
   service: name=supervisord state=restarted
 

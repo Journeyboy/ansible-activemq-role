@@ -13,6 +13,7 @@
   - ActiveMQ clean artifact
   - ActiveMQ chown dir
   - ActiveMQ open iptable
+  - Supervisord restart
   when: activemq_result.stat.isdir is not defined
 
 - name: Set ActiveMQ Home

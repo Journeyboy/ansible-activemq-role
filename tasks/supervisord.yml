@@ -4,4 +4,4 @@
 - name: Copy Supervisord.conf
   copy: src=files/supervisord.conf dest=/etc/supervisord.conf
   notify:
-    - restart supervisord
+    - Supervisord restart
