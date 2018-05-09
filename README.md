@@ -40,4 +40,4 @@ Configure:
 Future To Do's:
   - Transition from using to shell scripts where possible to ansible modules.
     + Unarchive and Ip tables modules were producing unexpected results when attempted. Debugging required. 
-
+  - Support activemq clustering
