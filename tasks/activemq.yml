@@ -3,6 +3,7 @@
   stat:
     path: "{{ activemq.path }}/activemq/bin"
   register: activemq_result
+  tags: activemq-check 
 
 - name: Installing ActiveMQ
   shell: "echo Fetching ActiveMQ Install Handlers"
@@ -15,13 +16,16 @@
   - ActiveMQ open iptable
   - Supervisord restart
   when: activemq_result.stat.isdir is not defined
+  tags: activemq-install
 
 - name: Set ActiveMQ Home
   lineinfile:
     path: /home/activemq/.bash_profile
     line: export ACTIVEMQ_HOME=/opt/activemq/
+  tags: activemq-env
   
 - name: Add ActiveMQ bin to path
   lineinfile:
     path: /home/activemq/.bash_profile
     line: export PATH=$PATH:$ACTIVEMQ_HOME/bin
+  tags: activemq-env

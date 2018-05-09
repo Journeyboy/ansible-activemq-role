@@ -5,6 +5,7 @@
 - fail:
     msg: "Error! This OS is not supported by this role"
   when: (ansible_distribution != "CentOS") or (ansible_distribution_major_version != "6")
+  tags: os-check
 
 # Set up users and linux configurations
 - import_tasks: basics.yml

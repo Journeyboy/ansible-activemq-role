@@ -1,7 +1,10 @@
 ---
 - name: Initial Update
   yum: name=* state=latest
+  tags: basics-install
 - name: Install EPEL
   yum: name=epel-release state=latest
+  tags: basics-install
 - name: Add user activemq
   user: name=activemq
+  tags: basics-install
