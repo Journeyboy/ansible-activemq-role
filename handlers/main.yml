@@ -10,8 +10,11 @@
     path: /opt/activemq
     state: directory
 
+# Unarchive module was buggy.  Requires further investigation
 - name: ActiveMQ extract
   shell: tar -zxvf ~/activemq.tar.gz --strip-components=1 -C /opt/activemq
+  args:
+    warn: false
 
 - name: ActiveMQ clean artifact
   file:
@@ -25,8 +28,15 @@
     group: activemq
     recurse: yes
 
+# IP table module was buggy.  Requires further investigation
 - name: ActiveMQ open iptable
-  shell: iptables -I INPUT -p tcp -m tcp --dport 8161 -j ACCEPT
+  shell: "iptables -I INPUT -p tcp -m tcp --dport {{ item }} -j ACCEPT"
+  loop:
+    - 8161
+    - 61613
+    - 61614
+    - 61616
+    - 1883
 
 - name: Supervisord restart
   service: name=supervisord state=restarted

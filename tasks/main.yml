@@ -1,10 +1,20 @@
 ---
 # tasks file for /etc/ansible/roles/activemq
+
+# Fail if OS not Centos 6
+- fail:
+    msg: "Error! This OS is not supported by this role"
+  when: (ansible_distribution != "CentOS") or (ansible_distribution_major_version != "6")
+
+# Set up users and linux configurations
 - import_tasks: basics.yml
   tags: basics
+# Install JDK for activemq
 - import_tasks: java.yml
   tags: java
+# Install ActiveMQ
 - import_tasks: activemq.yml
   tags: activemq
+# Install Supervisord which maintains and monitors ActiveMQ service
 - import_tasks: supervisord.yml
   tags: supervisord
